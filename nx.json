@@ -35,5 +35,6 @@
       },
       "exclude": ["e2e/**/*"]
     }
-  ]
+  ],
+  "nxCloudAccessToken": "N2EyYzhlNjEtN2FiMi00MjkyLWE3NmYtNzgwMDAxMTRjNThkfHJlYWQtd3JpdGU="
 }
