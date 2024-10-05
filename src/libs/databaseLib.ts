@@ -6,7 +6,7 @@
  */
 import { Redis } from 'ioredis';
 import { Sequelize, Dialect } from 'sequelize';
-import { databaseConfig } from '../configs';
+import { config } from '../configs/config';
 
 class DatabaseLib {
   private static instance: DatabaseLib;
@@ -17,11 +17,11 @@ class DatabaseLib {
 
   public sequelizeConnect = (): Sequelize => {
     return new Sequelize(
-      databaseConfig?.postgres?.databaseName,
-      databaseConfig?.postgres?.username,
-      databaseConfig?.postgres?.password,
+      config?.database?.postgres?.name,
+      config?.database?.postgres?.username,
+      config?.database?.postgres?.password,
       {
-        host: databaseConfig?.postgres?.host,
+        host: config?.database?.postgres?.host,
         dialect: 'postgres' as Dialect,
         protocol: 'postgres',
         pool: {
