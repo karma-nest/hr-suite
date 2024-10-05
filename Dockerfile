@@ -17,7 +17,7 @@ RUN npx nx build
 FROM node:21-alpine3.18
 
 # Set environment variables
-ENV NODE_ENV=production
+ENV NODE_ENV=develpment
 
 WORKDIR /hrx-sync
 
