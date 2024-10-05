@@ -10,7 +10,7 @@ class AuthenticationTemplate {
   private static instance: AuthenticationTemplate;
 
   constructor(
-    private readonly notificationUtil: NotificationLib = new NotificationLib()
+    private readonly notificationUtil: NotificationLib = new NotificationLib(),
   ) {}
 
   public static getInstance(): AuthenticationTemplate {
@@ -45,7 +45,7 @@ class AuthenticationTemplate {
 
   public activateAccount = (
     email: string,
-    activation_token: string
+    activation_token: string,
   ): string => {
     const activation_uri = `${
       process.env.API_URI
@@ -97,7 +97,7 @@ class AuthenticationTemplate {
     device: {
       ip: string;
       timestamp: string;
-    }
+    },
   ): string => {
     return this.notificationUtil.getMailgenInstance('salted').generate({
       body: {

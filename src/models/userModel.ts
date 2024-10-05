@@ -75,7 +75,7 @@ User.init(
     modelName: 'User',
     tableName: 'Users',
     timestamps: true,
-  }
+  },
 );
 
 export { User };

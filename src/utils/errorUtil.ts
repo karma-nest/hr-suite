@@ -107,7 +107,7 @@ export default class CreateErrorUtil {
    */
   public createBadRequestError = (
     message: string,
-    source: IErrorSource
+    source: IErrorSource,
   ): BadRequestError =>
     new BadRequestError({
       message,
@@ -124,7 +124,7 @@ export default class CreateErrorUtil {
   public createUnauthorizedError = (
     message: string,
     source: IErrorSource,
-    data?: Record<string, unknown>
+    data?: Record<string, unknown>,
   ): UnauthorizedError =>
     new UnauthorizedError({
       message,
@@ -140,7 +140,7 @@ export default class CreateErrorUtil {
    */
   public createValidationError = (
     message: string,
-    source: IErrorSource
+    source: IErrorSource,
   ): ValidationError =>
     new ValidationError({
       message,
@@ -155,7 +155,7 @@ export default class CreateErrorUtil {
    */
   public createTooManyRequestsError = (
     message: string,
-    source: IErrorSource
+    source: IErrorSource,
   ): TooManyRequestsError =>
     new TooManyRequestsError({
       message,
@@ -170,7 +170,7 @@ export default class CreateErrorUtil {
    */
   public createRequestFailedError = (
     message: string,
-    source: IErrorSource
+    source: IErrorSource,
   ): RequestFailedError =>
     new RequestFailedError({
       message,
@@ -185,7 +185,7 @@ export default class CreateErrorUtil {
    */
   public createNotFoundError = (
     message: string,
-    source: IErrorSource
+    source: IErrorSource,
   ): NotFoundError =>
     new NotFoundError({
       message,
@@ -200,7 +200,7 @@ export default class CreateErrorUtil {
    */
   public createInternalServerError = (
     message: string,
-    source: IErrorSource
+    source: IErrorSource,
   ): InternalServerError => {
     return new InternalServerError({
       message,

@@ -28,7 +28,7 @@ export const appMiddleware = (app: Application): void => {
           : ['*'],
       methods: ['GET', 'POST', 'PATCH', 'DELETE'],
       credentials: true,
-    })
+    }),
   );
   app.use(compression());
   app.use(express.json());

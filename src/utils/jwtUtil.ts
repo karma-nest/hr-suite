@@ -56,7 +56,7 @@ class JwtUtil {
           } else {
             resolve(token as string);
           }
-        }
+        },
       );
     });
   };
@@ -77,7 +77,7 @@ class JwtUtil {
           } else {
             resolve(decoded);
           }
-        }
+        },
       );
     });
   };

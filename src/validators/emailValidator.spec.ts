@@ -28,7 +28,7 @@ describe('Email Validator', () => {
     const { error } = emailSchema.validate(email);
 
     expect(error?.details[0]?.message).toBe(
-      'Please provide a valid email address.'
+      'Please provide a valid email address.',
     );
   });
 

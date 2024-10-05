@@ -27,7 +27,7 @@ describe('Admin Validator', () => {
 
     expect(error).toBeDefined();
     expect(error?.details[0].message).toBe(
-      'First name can only contain letters'
+      'First name can only contain letters',
     );
   });
 
@@ -41,7 +41,7 @@ describe('Admin Validator', () => {
 
     expect(error).toBeDefined();
     expect(error?.details[0].message).toBe(
-      'Last name can only contain letters'
+      'Last name can only contain letters',
     );
   });
 
@@ -67,7 +67,7 @@ describe('Admin Validator', () => {
       expect.arrayContaining([
         expect.objectContaining({ message: 'First name cannot be empty' }),
         expect.objectContaining({ message: 'Last name cannot be empty' }),
-      ])
+      ]),
     );
   });
 });

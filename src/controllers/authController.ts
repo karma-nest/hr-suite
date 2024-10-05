@@ -57,7 +57,7 @@ export default class AuthenticationController extends ResponseUtil {
     try {
       const payload = await this.authenticationService.setPassword(
         id,
-        confirm_password
+        confirm_password,
       );
 
       return this.response(res, StatusCodes.OK, payload);
@@ -101,7 +101,7 @@ export default class AuthenticationController extends ResponseUtil {
 
   public forgotPassword = async (
     req: Request,
-    res: Response
+    res: Response,
   ): Promise<void> => {
     const { email }: { email: string } = req.body;
 
@@ -139,7 +139,7 @@ export default class AuthenticationController extends ResponseUtil {
     try {
       const payload = await this.authenticationService.resetPassword(
         id,
-        confirm_password
+        confirm_password,
       );
 
       return this.response(res, StatusCodes.OK, payload);
@@ -150,7 +150,7 @@ export default class AuthenticationController extends ResponseUtil {
 
   public requestAccountActivation = async (
     req: Request,
-    res: Response
+    res: Response,
   ): Promise<void> => {
     const { email }: { email: string } = req.body;
 
@@ -172,7 +172,7 @@ export default class AuthenticationController extends ResponseUtil {
 
   public confirmAccountActivation = async (
     req: Request,
-    res: Response
+    res: Response,
   ): Promise<void> => {
     const { id }: { id: number } = req.app.locals.user;
 

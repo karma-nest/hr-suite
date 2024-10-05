@@ -32,7 +32,7 @@ class DatabaseLib {
         logging: (...debug: any[]) => {
           console.debug('Sequelize', debug);
         },
-      }
+      },
     );
   };
 

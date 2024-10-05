@@ -16,7 +16,7 @@ import { IUpdatePasswordQuery } from '../interfaces';
 const isPassword = (
   password: string,
   confirm_password: string,
-  callback: (error: Error | null, result: string | null) => void
+  callback: (error: Error | null, result: string | null) => void,
 ) => {
   if (typeof password !== 'string' || typeof confirm_password !== 'string') {
     callback(new Error('Invalid input.'), null);
@@ -30,12 +30,12 @@ const isPassword = (
   } else if (!/[a-z]/.test(password)) {
     callback(
       new Error('Password must contain at least one lowercase letter.'),
-      null
+      null,
     );
   } else if (!/[A-Z]/.test(password)) {
     callback(
       new Error('Password must contain at least one uppercase letter.'),
-      null
+      null,
     );
   } else if (!/(\d)/.test(password)) {
     callback(new Error('Password must contain at least one digit.'), null);
@@ -69,7 +69,7 @@ const updatePasswordSchema = Joi.object({
 });
 
 const validatePasswordUpdate = (
-  passwords: IUpdatePasswordQuery
+  passwords: IUpdatePasswordQuery,
 ): { error?: Joi.ValidationError } => {
   return updatePasswordSchema.validate(passwords, {
     abortEarly: false,

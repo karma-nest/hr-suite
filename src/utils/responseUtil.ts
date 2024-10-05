@@ -22,7 +22,7 @@ export default class ResponseUtil {
    */
   private formatResponse = (
     code: StatusCodes,
-    payload: unknown
+    payload: unknown,
   ): { code: StatusCodes; payload: unknown } => ({
     code,
     payload,
@@ -35,15 +35,15 @@ export default class ResponseUtil {
    */
   public unprocessableEntity = (
     res: Response,
-    error_message?: string
+    error_message?: string,
   ): void => {
     res
       .status(StatusCodes.UNPROCESSABLE_ENTITY)
       .json(
         this.formatResponse(
           StatusCodes.UNPROCESSABLE_ENTITY,
-          error_message ?? this._unprocessableErrorMsg
-        )
+          error_message ?? this._unprocessableErrorMsg,
+        ),
       );
   };
 
@@ -62,7 +62,7 @@ export default class ResponseUtil {
     this.error(
       res,
       statusCode,
-      error.message ?? 'An unexpected error occurred.'
+      error.message ?? 'An unexpected error occurred.',
     );
   };
 
@@ -75,7 +75,7 @@ export default class ResponseUtil {
   public response = (
     res: Response,
     code: StatusCodes,
-    payload: unknown
+    payload: unknown,
   ): void => {
     res.status(code).json(this.formatResponse(code, payload));
   };

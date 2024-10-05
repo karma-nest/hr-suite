@@ -4,7 +4,7 @@
  * @module AuthorizationMiddleware
  */
 import { Request, Response, NextFunction } from 'express';
-import { jwtUtil, ResponseUtil } from '../utils';
+import { jwtUtil, logger, ResponseUtil } from '../utils';
 import { authenticationMiddleware } from './authenticationMiddleware';
 import { StatusCodes } from 'http-status-codes';
 
@@ -19,7 +19,7 @@ class AuthorizationMiddleware extends ResponseUtil {
   public static getInstance(): AuthorizationMiddleware {
     if (!AuthorizationMiddleware.instance) {
       AuthorizationMiddleware.instance = new AuthorizationMiddleware(
-        'AuthorizationMiddleware'
+        'AuthorizationMiddleware',
       );
     }
     return AuthorizationMiddleware.instance;
@@ -28,7 +28,7 @@ class AuthorizationMiddleware extends ResponseUtil {
   public authorizeLogout = async (
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> => {
     authenticationMiddleware.isAuthenticated(req, res, async () => {
       try {
@@ -42,10 +42,12 @@ class AuthorizationMiddleware extends ResponseUtil {
         req.app.locals.user = decodedAuthorization;
         next();
       } catch (error) {
+        logger.error(error);
+
         return this.error(
           res,
           StatusCodes.UNAUTHORIZED,
-          'Sorry, failed to logout.'
+          'Sorry, failed to logout.',
         );
       }
     });
@@ -54,7 +56,7 @@ class AuthorizationMiddleware extends ResponseUtil {
   public authorizeAccountActivation = async (
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> => {
     const redirectURI = (error_message: string) =>
       `${
@@ -82,6 +84,8 @@ class AuthorizationMiddleware extends ResponseUtil {
         next();
       }
     } catch (error) {
+      logger.error(error);
+
       const error_message =
         'Invalid or expired activation token. Please request new one.';
       return res.redirect(301, redirectURI(error_message));
@@ -91,13 +95,13 @@ class AuthorizationMiddleware extends ResponseUtil {
   public authorizeSetupPassword = async (
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> => {
     const redirectURI = (error_message: string) =>
       `${
         process.env.CLIENT_URI
       }/account/set-password?error_message=${encodeURIComponent(
-        error_message
+        error_message,
       )}`;
 
     try {
@@ -126,6 +130,8 @@ class AuthorizationMiddleware extends ResponseUtil {
         next();
       }
     } catch (error) {
+      logger.error(error);
+
       const error_message =
         'Invalid or expired password token. Please request new one.';
       return res.redirect(301, redirectURI(error_message));
@@ -135,13 +141,13 @@ class AuthorizationMiddleware extends ResponseUtil {
   public authorizePasswordReset = async (
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> => {
     const redirectURI = (error_message: string) =>
       `${
         process.env.CLIENT_URI
       }/account/recover-password?error_message=${encodeURIComponent(
-        error_message
+        error_message,
       )}`;
 
     try {
@@ -165,6 +171,7 @@ class AuthorizationMiddleware extends ResponseUtil {
         next();
       }
     } catch (error) {
+      logger.error(error);
       const error_message =
         'Invalid or expired password token. Please request new one.';
       return res.redirect(301, redirectURI(error_message));

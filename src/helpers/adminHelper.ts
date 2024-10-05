@@ -60,7 +60,7 @@ export default class AdminHelper {
 
   public updateAdmin = async (
     user_id: number,
-    adminData: Partial<IAdmin>
+    adminData: Partial<IAdmin>,
   ): Promise<void | null> => {
     try {
       await this.adminModel.update(adminData, {

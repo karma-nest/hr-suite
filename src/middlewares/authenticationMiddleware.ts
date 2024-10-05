@@ -20,7 +20,7 @@ class AuthenticationMiddleware extends ResponseUtil {
   public static getInstance(): AuthenticationMiddleware {
     if (!AuthenticationMiddleware.instance) {
       AuthenticationMiddleware.instance = new AuthenticationMiddleware(
-        'authenticationMiddleware'
+        'authenticationMiddleware',
       );
     }
     return AuthenticationMiddleware.instance;
@@ -29,7 +29,7 @@ class AuthenticationMiddleware extends ResponseUtil {
   public isAuthenticated = (
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): void => {
     const authorizationHeader = req.headers['x-authorization'] as string;
 
@@ -38,7 +38,7 @@ class AuthenticationMiddleware extends ResponseUtil {
       return this.error(
         res,
         StatusCodes.UNAUTHORIZED,
-        "You did not provide an API key. You need to provide your API key in the X-Authorization header (e.g 'X-Authorization: Bearer YOUR_API_KEY')"
+        "You did not provide an API key. You need to provide your API key in the X-Authorization header (e.g 'X-Authorization: Bearer YOUR_API_KEY')",
       );
     }
 
@@ -53,7 +53,7 @@ class AuthenticationMiddleware extends ResponseUtil {
       return this.error(
         res,
         StatusCodes.UNAUTHORIZED,
-        'Invalid authorization header format.'
+        'Invalid authorization header format.',
       );
     }
 

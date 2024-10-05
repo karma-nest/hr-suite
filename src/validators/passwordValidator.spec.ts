@@ -29,7 +29,7 @@ describe('isPassword', () => {
 
     const callback = (error: Error | null, result: string | null) => {
       expect(error).toEqual(
-        new Error('Password must contain at least one lowercase letter.')
+        new Error('Password must contain at least one lowercase letter.'),
       );
       expect(result).toBeNull();
     };
@@ -42,7 +42,7 @@ describe('isPassword', () => {
 
     const callback = (error: Error | null, result: string | null) => {
       expect(error).toEqual(
-        new Error('Password must contain at least one uppercase letter.')
+        new Error('Password must contain at least one uppercase letter.'),
       );
       expect(result).toBeNull();
     };
@@ -55,7 +55,7 @@ describe('isPassword', () => {
 
     const callback = (error: Error | null, result: string | null) => {
       expect(error).toEqual(
-        new Error('Password must contain at least one digit.')
+        new Error('Password must contain at least one digit.'),
       );
       expect(result).toBeNull();
     };
@@ -68,7 +68,7 @@ describe('isPassword', () => {
 
     const callback = (error: Error | null, result: string | null) => {
       expect(error).toEqual(
-        new Error('Password must be at least 8 characters long.')
+        new Error('Password must be at least 8 characters long.'),
       );
       expect(result).toBeNull();
     };

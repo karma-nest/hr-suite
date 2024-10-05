@@ -25,7 +25,7 @@ export default class AuthenticationService {
   private readonly verifyAndRefreshToken = async (
     id: number,
     access_token: string,
-    cache_key: string
+    cache_key: string,
   ): Promise<string> => {
     try {
       if (!access_token) {
@@ -71,7 +71,7 @@ export default class AuthenticationService {
   }
 
   public register = async (
-    data: IAdminRegister
+    data: IAdminRegister,
   ): Promise<{ message: string }> => {
     const { email, phone, ...admin_others } = data;
 
@@ -88,7 +88,7 @@ export default class AuthenticationService {
             error: 'User document already exists.',
             log: email,
           },
-        }
+        },
       );
     }
 
@@ -117,7 +117,7 @@ export default class AuthenticationService {
       await this.notificationUtil.sendEmail(
         new_user.email,
         `Set up your ${config?.mail?.mailgen?.name} password`,
-        authenticationTemplate.setUpPassword(new_user.email, password_token)
+        authenticationTemplate.setUpPassword(new_user.email, password_token),
       );
 
       await redis.set(cache_key, password_token);
@@ -147,7 +147,7 @@ export default class AuthenticationService {
 
   public setPassword = async (
     id: number,
-    password: string
+    password: string,
   ): Promise<{
     message: string;
   }> => {
@@ -164,7 +164,7 @@ export default class AuthenticationService {
               error: 'User document not found',
               log: id,
             },
-          }
+          },
         );
       }
 
@@ -202,14 +202,14 @@ export default class AuthenticationService {
             error: 'Failed to create user password.',
             log: error?.message || error,
           },
-        }
+        },
       );
     }
   };
 
   public login = async (
     email: string,
-    password: string
+    password: string,
   ): Promise<{ access_token: string }> => {
     const found_user = await this.userHelper.getUser({ email });
     if (!found_user) {
@@ -222,7 +222,7 @@ export default class AuthenticationService {
             error: 'User document not found',
             log: email,
           },
-        }
+        },
       );
     }
 
@@ -236,13 +236,13 @@ export default class AuthenticationService {
             error: 'User account not verified.',
             log: email,
           },
-        }
+        },
       );
     }
 
     const passwords_match = await passwordUtil.comparePassword(
       password,
-      found_user?.password
+      found_user?.password,
     );
     if (!passwords_match) {
       throw this.errorUtil.createValidationError(
@@ -254,7 +254,7 @@ export default class AuthenticationService {
             error: 'User password is invalid.',
             log: email,
           },
-        }
+        },
       );
     }
 
@@ -265,7 +265,7 @@ export default class AuthenticationService {
       const access_token = await this.verifyAndRefreshToken(
         found_user?.id,
         cached_access_token,
-        cache_key
+        cache_key,
       );
 
       return { access_token };
@@ -279,7 +279,7 @@ export default class AuthenticationService {
             error: 'Failed to login user.',
             log: error?.message || error,
           },
-        }
+        },
       );
     }
   };
@@ -299,7 +299,7 @@ export default class AuthenticationService {
               error: 'Cached access token not found.',
               log: user_id,
             },
-          }
+          },
         );
       }
 
@@ -314,13 +314,13 @@ export default class AuthenticationService {
             error: 'Failed to log out user.',
             log: error?.message || error,
           },
-        }
+        },
       );
     }
   };
 
   public forgotPassword = async (
-    email: string
+    email: string,
   ): Promise<{ message: string }> => {
     const found_user = await this.userHelper.getUser({ email });
     if (!found_user) {
@@ -333,7 +333,7 @@ export default class AuthenticationService {
             error: 'User document not found.',
             log: email,
           },
-        }
+        },
       );
     }
 
@@ -347,7 +347,7 @@ export default class AuthenticationService {
             error: 'User account not verified.',
             log: email,
           },
-        }
+        },
       );
     }
 
@@ -363,7 +363,10 @@ export default class AuthenticationService {
       await this.notificationUtil.sendEmail(
         found_user?.email,
         `${config?.mail?.mailgen?.name} account password reset`,
-        authenticationTemplate.forgotPassword(found_user?.email, password_token)
+        authenticationTemplate.forgotPassword(
+          found_user?.email,
+          password_token,
+        ),
       );
 
       await redis.set(cache_key, password_token);
@@ -381,14 +384,14 @@ export default class AuthenticationService {
             error: 'Failed to send reset link.',
             log: error?.message || error,
           },
-        }
+        },
       );
     }
   };
 
   public resetPassword = async (
     user_id: number,
-    new_password: string
+    new_password: string,
   ): Promise<{ message: string }> => {
     const found_user = await this.userHelper.getUser({ id: user_id });
     if (!found_user) {
@@ -401,13 +404,13 @@ export default class AuthenticationService {
             error: 'User document not found.',
             log: user_id,
           },
-        }
+        },
       );
     }
 
     const passwords_match = await passwordUtil.comparePassword(
       new_password,
-      found_user?.password
+      found_user?.password,
     );
     if (passwords_match) {
       throw this.errorUtil.createBadRequestError(
@@ -419,7 +422,7 @@ export default class AuthenticationService {
             error: 'User new password same as old password.',
             log: user_id || found_user.email,
           },
-        }
+        },
       );
     }
 
@@ -442,7 +445,7 @@ export default class AuthenticationService {
           timestamp: Date()
             .toString()
             .replace(/\s\(.*\)$/, ''),
-        })
+        }),
       );
 
       return {
@@ -458,13 +461,13 @@ export default class AuthenticationService {
             error: 'Failed to update password or send confirmation email.',
             log: error?.message || error,
           },
-        }
+        },
       );
     }
   };
 
   public requestActivation = async (
-    email: string
+    email: string,
   ): Promise<{ message: string }> => {
     const found_user = await this.userHelper.getUser({ email });
     if (!found_user) {
@@ -477,7 +480,7 @@ export default class AuthenticationService {
             error: 'User document not found.',
             log: email,
           },
-        }
+        },
       );
     }
 
@@ -491,7 +494,7 @@ export default class AuthenticationService {
             error: 'User account verified.',
             log: email,
           },
-        }
+        },
       );
     }
 
@@ -510,8 +513,8 @@ export default class AuthenticationService {
         `Welcome Aboard! Activate Your ${config?.mail?.mailgen?.name} Account`,
         authenticationTemplate.activateAccount(
           found_user.email,
-          activation_token
-        )
+          activation_token,
+        ),
       );
 
       return {
@@ -528,13 +531,13 @@ export default class AuthenticationService {
             error: 'Failed to send activation email.',
             log: error?.message || error,
           },
-        }
+        },
       );
     }
   };
 
   public confirmActivation = async (
-    user_id: number
+    user_id: number,
   ): Promise<{ message: string }> => {
     const found_user = await this.userHelper.getUser({ id: user_id });
     if (!found_user) {
@@ -547,7 +550,7 @@ export default class AuthenticationService {
             error: 'User document not found.',
             log: user_id,
           },
-        }
+        },
       );
     }
 
@@ -569,7 +572,7 @@ export default class AuthenticationService {
             error: 'Failed to activate account.',
             log: error?.message || error,
           },
-        }
+        },
       );
     }
   };

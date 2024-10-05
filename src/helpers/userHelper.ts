@@ -54,7 +54,7 @@ export default class UserHelper {
 
   public updateUser = async (
     user_id: number,
-    user_data: Partial<IUser>
+    user_data: Partial<IUser>,
   ): Promise<void | null> => {
     try {
       const updateCondition = { ...user_data };

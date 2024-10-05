@@ -33,7 +33,7 @@ class PasswordUtil {
 
   public async comparePassword(
     plainPassword: string,
-    hashed_password: string
+    hashed_password: string,
   ): Promise<boolean> {
     try {
       const secret = Buffer.from(config?.auth?.argon);

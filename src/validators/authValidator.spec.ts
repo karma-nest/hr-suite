@@ -54,7 +54,7 @@ describe('authValidator', () => {
       const { error } = authSchemas.register.validate(invalidAdminRegister);
       expect(error).toBeDefined();
       expect(error?.details[0]?.message).toBe(
-        'Please provide a valid email address.'
+        'Please provide a valid email address.',
       );
     });
 
@@ -111,7 +111,7 @@ describe('authValidator', () => {
       const { error } = authSchemas.login.validate(invalidLogin);
       expect(error).toBeDefined();
       expect(error?.details[0]?.message).toBe(
-        'Please provide a valid email address.'
+        'Please provide a valid email address.',
       );
     });
   });

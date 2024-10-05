@@ -29,7 +29,7 @@ class LoggerUtil {
             level: 'info',
             format: winston.format.combine(
               winston.format.json(),
-              winston.format.prettyPrint()
+              winston.format.prettyPrint(),
             ),
           })
         : new LogtailTransport(new Logtail(config?.logging?.logtail));

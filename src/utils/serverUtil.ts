@@ -16,7 +16,7 @@ dotenv.config();
  */
 export const startServer = async (
   app: Application,
-  port = 8080
+  port = 8080,
 ): Promise<void> => {
   try {
     // Authenticate and sync database

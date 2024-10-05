@@ -16,7 +16,7 @@ export default class NotificationUtil {
   public sendEmail = async (
     receiver: string,
     subject: string,
-    template: string
+    template: string,
   ): Promise<void> => {
     return new Promise<void>((resolve, reject) => {
       this.notificationLib.createNodemailerTransport().sendMail(
@@ -32,7 +32,7 @@ export default class NotificationUtil {
           } else {
             resolve();
           }
-        }
+        },
       );
     });
   };
