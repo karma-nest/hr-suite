@@ -4,7 +4,7 @@
  * @module appConfig
  */
 import express, { Application } from 'express';
-import { configureMiddlewares } from './middlewares';
+import { appMiddleware } from './middlewares';
 import { startServer } from './utils';
 
 import dotenv from 'dotenv';
@@ -18,6 +18,6 @@ const PORT: string = process.env.PORT ?? '3000';
  */
 const app: Application = express();
 
-configureMiddlewares(app);
+appMiddleware(app);
 
 startServer(app, parseInt(PORT, 10));
