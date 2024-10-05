@@ -6,22 +6,13 @@
 import winston, { Logger, createLogger } from 'winston';
 import { Logtail } from '@logtail/node';
 import { LogtailTransport } from '@logtail/winston';
-import { loggerConfig } from '../configs';
+import { config } from '../configs/config';
 
 type Environment = 'development' | 'production';
 
-type LoggerAccessToken = string;
-
-/**
- * Singleton class responsible for initializing and providing access to logger instances.
- */
 class LoggerUtil {
   private static instance: LoggerUtil;
 
-  /**
-   * Ensures a single instance of LoggerUtil is used throughout the application.
-   * @returns {LoggerUtil} Instance of LoggerUtil.
-   */
   public static getInstance(): LoggerUtil {
     if (!LoggerUtil.instance) {
       LoggerUtil.instance = new LoggerUtil();
@@ -29,12 +20,7 @@ class LoggerUtil {
     return LoggerUtil.instance;
   }
 
-  /**
-   * Creates a Winston logger tailored to the application's current environment.
-   * @param {LoggerAccessToken} accessToken - Unique access token for the logger.
-   * @returns {Logger} Configured Winston logger instance.
-   */
-  public createLogger(accessToken: LoggerAccessToken): Logger {
+  public createLogger(): Logger {
     const environment: Environment =
       (process.env.NODE_ENV as Environment) || 'development';
     const transports =
@@ -46,10 +32,10 @@ class LoggerUtil {
               winston.format.prettyPrint()
             ),
           })
-        : new LogtailTransport(new Logtail(accessToken));
+        : new LogtailTransport(new Logtail(config?.logging?.logtail));
 
     return createLogger({ transports });
   }
 }
 
-export const logger = LoggerUtil.getInstance().createLogger(loggerConfig);
+export const logger = LoggerUtil.getInstance().createLogger();
