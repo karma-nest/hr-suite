@@ -107,7 +107,7 @@ class AuthorizationMiddleware extends ResponseUtil {
     try {
       const { password_token }: { password_token: string } = req.body;
 
-      console.info(password_token);
+      console.info('Received password token.');
 
       if (!password_token) {
         const error_message = 'Password token is missing.';
@@ -120,7 +120,7 @@ class AuthorizationMiddleware extends ResponseUtil {
         type: 'password',
       });
 
-      console.info(decoded_password_token);
+      console.info('Decoded password token.');
 
       if (Object.keys(decoded_password_token).length === 0) {
         const error_message = 'Unable to process your request.';
