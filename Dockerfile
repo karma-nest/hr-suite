@@ -1,7 +1,7 @@
 # Stage 1: Build the application
 FROM node:21-alpine3.18 AS builder
 
-WORKDIR /hrx-sync
+WORKDIR /hr-suite
 
 # Copy package files first to leverage Docker cache
 COPY package.json package-lock.json ./
@@ -19,17 +19,17 @@ FROM node:21-alpine3.18
 # Set environment variables
 ENV NODE_ENV=develpment
 
-WORKDIR /hrx-sync
+WORKDIR /hr-suite
 
 # Copy the build artifacts from the builder stage
-COPY --from=builder /hrx-sync/dist ./dist
-COPY --from=builder /hrx-sync/package.json ./
-COPY --from=builder /hrx-sync/node_modules ./node_modules
+COPY --from=builder /hr-suite/dist ./dist
+COPY --from=builder /hr-suite/package.json ./
+COPY --from=builder /hr-suite/node_modules ./node_modules
 
 # Copy the .env file (if it's part of the build process)
 COPY .env .env
 
-ENTRYPOINT [ "node", "--env-file=./.env", "./dist/hrx-sync/main.js" ]
+ENTRYPOINT [ "node", "--env-file=./.env", "./dist/hr-suite/main.js" ]
 
 # Expose the application port
 EXPOSE 4200

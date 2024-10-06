@@ -5,12 +5,12 @@
     <em><code>🔍 Job Recruitment RESTful API.</code></em>
 </p>
 <p align="center">
-<img alt="GitHub NX Status" src="https://github.com/the-berufegoru/hrx-sync/actions/workflows/ci.yml/badge.svg">
-<img alt="GitHub CodeQL Status" src="https://github.com/the-berufegoru/hrx-sync/actions/workflows/codeql.yml/badge.svg">
-<img src="https://img.shields.io/github/license/the-berufegoru/hrx-sync?style=flat&color=0080ff" alt="license">
-<img src="https://img.shields.io/github/last-commit/the-berufegoru/hrx-sync?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
-<img src="https://img.shields.io/github/languages/top/the-berufegoru/hrx-sync?style=flat&color=0080ff" alt="repo-top-language">
-<img src="https://img.shields.io/github/languages/count/the-berufegoru/hrx-sync?style=flat&color=0080ff" alt="repo-language-count">
+<img alt="GitHub NX Status" src="https://github.com/karma-nest/hr-suite/actions/workflows/ci.yml/badge.svg">
+<img alt="GitHub CodeQL Status" src="https://github.com/karma-nest/hr-suite/actions/workflows/codeql.yml/badge.svg">
+<img src="https://img.shields.io/github/license/karma-nest/hr-suite?style=flat&color=0080ff" alt="license">
+<img src="https://img.shields.io/github/last-commit/karma-nest/hr-suite?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
+<img src="https://img.shields.io/github/languages/top/karma-nest/hr-suite?style=flat&color=0080ff" alt="repo-top-language">
+<img src="https://img.shields.io/github/languages/count/karma-nest/hr-suite?style=flat&color=0080ff" alt="repo-language-count">
 
 <p>
 <p align="center">
@@ -46,16 +46,16 @@ Ensure you have the following dependencies installed on your system:
 
 ### ⚙️ Installation
 
-1. Clone the hrx-sync repository:
+1. Clone the hr-suite repository:
 
 ```sh
-git clone https://github.com/the-berufegoru/hrx-sync
+git clone https://github.com/karma-nest/hr-suite
 ```
 
 2. Change to the project directory:
 
 ```sh
-cd hrx-sync
+cd hr-suite
 ```
 
 3. Install the dependencies:
@@ -64,9 +64,9 @@ cd hrx-sync
 npm install
 ```
 
-### 🤖 Running hrx-sync
+### 🤖 Running hr-suite
 
-Use the following command to run hrx-sync:
+Use the following command to run hr-suite:
 
 ```sh
 npm run start
@@ -92,9 +92,9 @@ npm test
 
 Contributions are welcome! Here are several ways you can contribute:
 
-- **[Submit Pull Requests](https://github.com/the-berufegoru/hrx-sync/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://github.com/the-berufegoru/hrx-sync/discussions)**: Share your insights, provide feedback, or ask questions.
-- **[Report Issues](https://github.com/the-berufegoru/hrx-sync/issues)**: Submit bugs found or log feature requests for hrx-sync.
+- **[Submit Pull Requests](https://github.com/karma-nest/hr-suite/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **[Join the Discussions](https://github.com/karma-nest/hr-suite/discussions)**: Share your insights, provide feedback, or ask questions.
+- **[Report Issues](https://github.com/karma-nest/hr-suite/issues)**: Submit bugs found or log feature requests for hr-suite.
 
 <details closed>
     <summary>Contributing Guidelines</summary>
@@ -103,7 +103,7 @@ Contributions are welcome! Here are several ways you can contribute:
 2. **Clone Locally**: Clone the forked repository to your local machine using a Git client.
 
    ```sh
-   git clone https://github.com/the-berufegoru/hrx-sync
+   git clone https://github.com/karma-nest/hr-suite
    ```
 
 3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
@@ -135,7 +135,7 @@ Once your PR is reviewed and approved, it will be merged into the main branch.
 
 ## 📄 License
 
-This project is protected under the [MIT](LICENSE.md) License. For more details, refer to the [LICENSE](https://github.com/the-berufegoru/hrx-sync?tab=MIT-1-ov-file#readme/) file.
+This project is protected under the [MIT](LICENSE.md) License. For more details, refer to the [LICENSE](https://github.com/karma-nest/hr-suite?tab=MIT-1-ov-file#readme/) file.
 
 ---
 
