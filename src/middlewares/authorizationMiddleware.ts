@@ -107,20 +107,15 @@ class AuthorizationMiddleware extends ResponseUtil {
     try {
       const { password_token }: { password_token: string } = req.body;
 
-      console.info('Received password token.');
-
       if (!password_token) {
         const error_message = 'Password token is missing.';
         res.redirect(301, redirectURI(error_message));
       }
 
-      console.debug('verify token');
       const decoded_password_token = await jwtUtil.verifyToken({
         token: password_token,
         type: 'password',
       });
-
-      console.info('Decoded password token.');
 
       if (Object.keys(decoded_password_token).length === 0) {
         const error_message = 'Unable to process your request.';
