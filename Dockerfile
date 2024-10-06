@@ -5,7 +5,7 @@ WORKDIR /hrx-sync
 
 # Copy package files first to leverage Docker cache
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --force
 
 # Copy the rest of the application files
 COPY . .
@@ -25,6 +25,9 @@ WORKDIR /hrx-sync
 COPY --from=builder /hrx-sync/dist ./dist
 COPY --from=builder /hrx-sync/package.json ./
 COPY --from=builder /hrx-sync/node_modules ./node_modules
+
+# Copy the .env file (if it's part of the build process)
+COPY .env .env
 
 ENTRYPOINT [ "node", "--env-file=./.env", "./dist/hrx-sync/main.js" ]
 
