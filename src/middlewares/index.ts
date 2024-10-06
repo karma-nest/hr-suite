@@ -4,4 +4,10 @@
  * @version
  */
 
-export { configureMiddlewares } from './app';
+export { appMiddleware } from './appMiddleware';
+
+export { authenticationMiddleware } from './authenticationMiddleware';
+
+export { authorizationMiddleware } from './authorizationMiddleware';
+
+export { requestLimiterMiddleware } from './requestLimiterMiddleware';

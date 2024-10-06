@@ -1,5 +1,5 @@
 {
-  "name": "hrx-sync",
+  "name": "hr-suite",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "src",
   "projectType": "application",
@@ -11,7 +11,7 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "dist/hrx-sync",
+        "outputPath": "dist/hr-suite",
         "format": ["cjs"],
         "bundle": false,
         "main": "src/main.ts",
@@ -42,20 +42,20 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "hrx-sync:build"
+        "buildTarget": "hr-suite:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "hrx-sync:build:development"
+          "buildTarget": "hr-suite:build:development"
         },
         "production": {
-          "buildTarget": "hrx-sync:build:production"
+          "buildTarget": "hr-suite:build:production"
         }
       }
     },
     "docker-build": {
       "dependsOn": ["build"],
-      "command": "docker build -f Dockerfile . -t hrx-sync"
+      "command": "docker build -f Dockerfile . -t hr-suite"
     }
   }
 }

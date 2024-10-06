@@ -4,8 +4,9 @@ import http from 'http';
 import ip from 'ip';
 import os from 'os';
 import { sequelize } from '../libs';
-import { logger } from './';
+import { logger } from '.';
 import { Application } from 'express';
+import { associateModels } from '../models/associations';
 
 dotenv.config();
 
@@ -15,10 +16,11 @@ dotenv.config();
  */
 export const startServer = async (
   app: Application,
-  port = 8080
+  port = 8080,
 ): Promise<void> => {
   try {
     // Authenticate and sync database
+    associateModels();
     await sequelize.authenticate();
     await sequelize.sync({ force: false });
 

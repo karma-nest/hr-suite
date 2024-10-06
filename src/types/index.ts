@@ -4,4 +4,4 @@
  * @version
  */
 
-export { LoggerConfig } from './logger';
+export { UserRoleType } from './userRole';

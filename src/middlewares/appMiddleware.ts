@@ -10,13 +10,14 @@ import cors from 'cors';
 import morgan from 'morgan';
 import fs from 'fs';
 import path from 'path';
+import { AuthenticationRoutes } from '../routes';
 
 /**
  * Configure middlewares for the Express application.
  * @param {Application} app - The Express application instance.
  * @returns {void}
  */
-export const configureMiddlewares = (app: Application): void => {
+export const appMiddleware = (app: Application): void => {
   app.set('trust proxy', 1);
   app.use(helmet());
   app.use(
@@ -27,7 +28,7 @@ export const configureMiddlewares = (app: Application): void => {
           : ['*'],
       methods: ['GET', 'POST', 'PATCH', 'DELETE'],
       credentials: true,
-    })
+    }),
   );
   app.use(compression());
   app.use(express.json());
@@ -41,4 +42,6 @@ export const configureMiddlewares = (app: Application): void => {
     });
     app.use(morgan('combined', { stream }));
   }
+
+  app.use('/api/v1/auth', new AuthenticationRoutes().init());
 };
