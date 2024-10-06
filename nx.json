@@ -22,19 +22,13 @@
     }
   },
   "plugins": [
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
     {
       "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      },
+      "options": { "targetName": "test" },
       "exclude": ["e2e/**/*"]
     }
   ],
-  "nxCloudaccess_token": "N2EyYzhlNjEtN2FiMi00MjkyLWE3NmYtNzgwMDAxMTRjNThkfHJlYWQtd3JpdGU="
+  "nxCloudaccess_token": "N2EyYzhlNjEtN2FiMi00MjkyLWE3NmYtNzgwMDAxMTRjNThkfHJlYWQtd3JpdGU=",
+  "nxCloudId": "6702769d6c4d30749da4a2d9"
 }
